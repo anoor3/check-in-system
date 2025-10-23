@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light dark;
+  --background: 0 0% 100%;
+  --foreground: 222.2 47.4% 11.2%;
+  --muted: 210 40% 96%;
+  --muted-foreground: 215 16% 46%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 47.4% 11.2%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 47.4% 11.2%;
+  --border: 214 32% 91%;
+  --input: 214 32% 91%;
+  --primary: 217 91% 60%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 210 40% 96.1%;
+  --secondary-foreground: 222.2 47.4% 11.2%;
+  --accent: 210 40% 96%;
+  --accent-foreground: 222.2 47.4% 11.2%;
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 210 40% 98%;
+  --ring: 217 91% 60%;
+}
+
+.dark :root {
+  --background: 224 14% 12%;
+  --foreground: 210 40% 98%;
+  --muted: 222 24% 18%;
+  --muted-foreground: 216 15% 65%;
+  --popover: 224 14% 12%;
+  --popover-foreground: 210 40% 98%;
+  --card: 224 14% 12%;
+  --card-foreground: 210 40% 98%;
+  --border: 223 30% 20%;
+  --input: 223 30% 20%;
+  --primary: 217 91% 60%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 222 24% 18%;
+  --secondary-foreground: 210 40% 98%;
+  --accent: 222 24% 18%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 72% 41%;
+  --destructive-foreground: 210 40% 98%;
+  --ring: 217 91% 60%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-background text-foreground font-sans antialiased;
+}
+
+main {
+  @apply min-h-screen;
+}
+
+.fade-in {
+  animation: fade-in 0.3s ease forwards;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

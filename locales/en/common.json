@@ -1,0 +1,12 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "classes": "Classes",
+    "history": "History",
+    "settings": "Settings"
+  },
+  "actions": {
+    "signIn": "Sign in",
+    "signOut": "Sign out"
+  }
+}
