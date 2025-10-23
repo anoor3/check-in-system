@@ -1,10 +1,9 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import { useCallback } from "react";
-import { Button } from "@/components/ui/button";
+import { QrScanner } from "@yudiel/react-qr-scanner";
 
-const QrReader = dynamic(() => import("react-qr-reader"), { ssr: false });
+import { Button } from "@/components/ui/button";
 
 interface QRScannerProps {
   onScan: (value: string) => void;
@@ -12,30 +11,43 @@ interface QRScannerProps {
 }
 
 export function QRScanner({ onScan, onError }: QRScannerProps) {
-  const handleScan = useCallback(
-    (value: string | null) => {
-      if (value) {
-        onScan(value);
+  const handleDecode = useCallback(
+    (result: string) => {
+      if (result) {
+        onScan(result);
       }
     },
     [onScan]
   );
 
+  const handleError = useCallback(
+    (error: Error | string) => {
+      if (typeof error === "string") {
+        onError?.(new Error(error));
+      } else if (error) {
+        onError?.(error);
+      }
+    },
+    [onError]
+  );
+
   return (
     <div className="space-y-4">
       <div className="overflow-hidden rounded-3xl border border-border">
-        <QrReader
-          delay={300}
+        <QrScanner
+          onDecode={handleDecode}
+          onError={handleError}
           constraints={{ facingMode: "environment" }}
-          onError={(error) => onError?.(error as Error)}
-          onScan={handleScan}
-          className="h-full w-full"
+          scanDelay={300}
+          containerStyle={{ width: "100%" }}
         />
       </div>
       <p className="text-xs text-muted-foreground">
         Having trouble? Ensure camera permissions are granted or enter the join code manually.
       </p>
-      <Button type="button" variant="outline" onClick={() => onScan("")}>Use code entry</Button>
+      <Button type="button" variant="outline" onClick={() => onScan("")}>
+        Use code entry
+      </Button>
     </div>
   );
 }
